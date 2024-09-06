@@ -21,9 +21,9 @@ echo "export LANGUAGE=en_US.UTF-8" >> /etc/bash.bashrc
 echo "export KUBECONFIG=\"/etc/kubernetes/admin.conf\"" >> /etc/bash.bashrc
 
 ## setting up rc.local like autoexe.bat for some process to start at end of boot
-
+##backup in case there
 /bin/cp -pR /etc/rc.local /opt/old-config-backup/old-rc.local-`date +%s` 1>/dev/null 2>/dev/null
-## create with default IPV6 disabled
+## create with default IPV6 disabledi and other option forced
 touch /etc/rc.local
 printf '%s\n' '#!/bin/bash'  | tee -a /etc/rc.local 1>/dev/null
 echo "sysctl -w net.ipv6.conf.all.disable_ipv6=1" >>/etc/rc.local
@@ -33,10 +33,10 @@ echo "swapoff -a" >> /etc/rc.local
 echo "modprobe overlay" >> /etc/rc.local
 echo "modprobe br_netfilter" >> /etc/rc.local
 echo "sysctl -w net.ipv4.ip_forward=1" >> /etc/rc.local
-
 echo "exit 0" >> /etc/rc.local
 chmod 755 /etc/rc.local
-## need like autoexe bat on startup
+
+## need like autoexe bat on startup to use in some case  like old days for the VM or baremetal
 echo "[Unit]" > /etc/systemd/system/rc-local.service
 echo " Description=/etc/rc.local Compatibility" >> /etc/systemd/system/rc-local.service
 echo " ConditionPathExists=/etc/rc.local" >> /etc/systemd/system/rc-local.service
@@ -56,7 +56,9 @@ echo " WantedBy=multi-user.target" >> /etc/systemd/system/rc-local.service
 systemctl enable rc-local
 systemctl start rc-local
 
-
+## for k8s setup tunning.
+#https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-o
+#Kubernetes requires the following configurations be set before using cri-o container runtime
 
 modprobe overlay
 modprobe br_netfilter
@@ -102,23 +104,20 @@ apt -y  dist-upgrade
 
 ## install basic postfix, chrony time-server tool instead of default and other useful tools
 
-## postfix for system alert is need
+## postfix for system alert is need , and other basic packages with addon tools for management
 CFG_HOSTNAME_FQDN=`hostname -f`
 echo "postfix postfix/main_mailer_type select Internet Site" | debconf-set-selections
 echo "postfix postfix/mailname string $CFG_HOSTNAME_FQDN" | debconf-set-selections
 echo "iptables-persistent iptables-persistent/autosave_v4 boolean true" | debconf-set-selections
 echo "iptables-persistent iptables-persistent/autosave_v6 boolean true" | debconf-set-selections
 DEBIAN_FRONTEND=noninteractive
-
 apt -y  install vim chrony openssh-server screen net-tools git mc postfix sendemail tmux  \
 	sudo wget curl ethtool iptraf-ng traceroute telnet rsyslog software-properties-common \
 	dirmngr parted gdisk apt-transport-https lsb-release ca-certificates iputils-ping \
 	bridge-utils iptables jq conntrack gnupg nfs-common 
-
  
 sed -i '/swap/s/^/#/' /etc/fstab
 swapoff -a
-modprobe br_netfilter
 sysctl -w net.ipv4.ip_forward=1
 
 echo ""

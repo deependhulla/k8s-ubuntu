@@ -1,4 +1,6 @@
+#!/bin/bash
 
+cd /tmp
 
 #https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
 
@@ -12,3 +14,4 @@ sudo install -o root -g root -m 0755 kubectl-convert /usr/local/bin/kubectl-conv
 kubectl convert --help
 
 
+cd -
