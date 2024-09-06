@@ -2,6 +2,7 @@
 
 CRIO_VERSION=v1.30
 KUBERNETES_VERSION=v1.31
+CALICO_VERSION=v3.28.1
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
@@ -20,7 +21,7 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 
 apt-get update
 
-apt-get install -y cri-o kubelet kubeadm kubectl rsyslog-kubernetes
+apt-get install -y cri-o kubelet kubeadm kubectl rsyslog-kubernetes kubetail kubecolor
 
 ## check and print version
 kubectl version --client
@@ -48,6 +49,10 @@ net.ipv4.ip_forward                 = 1
 EOF
 
 sysctl --system
+
+
+sudo systemctl enable kubelet
+sudo systemctl start kubelet
 
 ## download calico ctl before config
 cd /tmp/
