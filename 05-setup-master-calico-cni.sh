@@ -1,5 +1,15 @@
 #!/bin/bash
 
+
+
+#https://kubernetes.io/docs/concepts/cluster-administration/addons/#networking-and-network-policy
+
+#Calico is a networking and network policy provider. 
+#Calico supports a flexible set of networking options so you can choose the most efficient option for your situation, 
+#including non-overlay and overlay networks, with or without BGP.
+#Calico uses the same engine to enforce network policy for hosts, pods, and (if using Istio & Envoy) applications at the service mesh layer.
+
+
 ## only for custom
 #podnetwork="10.11.0.0/16"
 #servicenetwork="192.168.107.0/24"
