@@ -5,6 +5,9 @@
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 1>/dev/null
 sysctl -w net.ipv6.conf.default.disable_ipv6=1 1>/dev/null
 
+systemctl stop ufw
+systemctl disable ufw
+
 
 ## centos like bash ..for all inteactive 
 echo "" >> /etc/bash.bashrc
