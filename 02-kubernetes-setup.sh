@@ -9,6 +9,7 @@ CALICO_VERSION=v3.28.1
 ## remove if installed
 apt-get -y remove containerd
 apt-get -y purge containerd
+apt -y autoremove
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
