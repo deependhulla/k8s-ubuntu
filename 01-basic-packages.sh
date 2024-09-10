@@ -8,6 +8,9 @@ sysctl -w net.ipv6.conf.default.disable_ipv6=1 1>/dev/null
 systemctl stop ufw
 systemctl disable ufw
 
+systemctl stop apparmor
+systemctl disable apparmor
+
 
 ## centos like bash ..for all inteactive 
 echo "" >> /etc/bash.bashrc
@@ -118,7 +121,7 @@ apt -y  install vim chrony openssh-server screen net-tools git mc postfix sendem
 	sudo wget curl ethtool iptraf-ng traceroute telnet rsyslog software-properties-common \
 	dirmngr parted gdisk apt-transport-https lsb-release ca-certificates iputils-ping \
 	bridge-utils iptables jq conntrack gnupg nfs-common socat ipset containerd \
-	rsyslog-kubernetes kubetail kubecolor 
+	rsyslog-kubernetes kubetail kubecolor ebtables 
  
 sed -i '/swap/s/^/#/' /etc/fstab
 swapoff -a

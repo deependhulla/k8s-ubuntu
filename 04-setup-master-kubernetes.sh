@@ -6,6 +6,10 @@ podnetwork="10.85.0.0/16"
 #masterhost="192.168.64.9"
 #sed -i "s#10.85.0.0/16#$podnetwork#g" /etc/cni//net.d/11-crio-ipv4-bridge.conflist 
 
+## remove if installed
+apt-get -y remove containerd
+apt-get -y purge containerd
+
 
 systemctl restart crio
 systemctl restart kubelet
