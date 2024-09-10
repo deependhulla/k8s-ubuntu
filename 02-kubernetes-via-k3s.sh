@@ -4,7 +4,7 @@ cd /tmp
 
 curl -sfL https://get.k3s.io | sh -
 
-echo "Please Wait the pods are getting Created..."
+echo "Please Wait the pods are getting download  arounf 1.5GB and Created..."
 sleep 10
 kubectl get pods -A
 echo "Please Wait the pods are getting Created..."
