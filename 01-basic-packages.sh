@@ -117,7 +117,7 @@ DEBIAN_FRONTEND=noninteractive
 apt -y  install vim chrony openssh-server screen net-tools git mc postfix sendemail tmux  \
 	sudo wget curl ethtool iptraf-ng traceroute telnet rsyslog software-properties-common \
 	dirmngr parted gdisk apt-transport-https lsb-release ca-certificates iputils-ping \
-	bridge-utils iptables jq conntrack gnupg nfs-common socat ipset 
+	bridge-utils iptables jq conntrack gnupg nfs-common socat ipset containerd 
  
 sed -i '/swap/s/^/#/' /etc/fstab
 swapoff -a
