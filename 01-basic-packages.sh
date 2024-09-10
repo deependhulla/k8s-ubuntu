@@ -21,7 +21,7 @@ echo "export EDITOR=vi" >> /etc/bash.bashrc
 echo "export LC_CTYPE=en_US.UTF-8" >> /etc/bash.bashrc
 echo "export LC_ALL=en_US.UTF-8" >> /etc/bash.bashrc
 echo "export LANGUAGE=en_US.UTF-8" >> /etc/bash.bashrc
-echo "export KUBECONFIG=\"/etc/kubernetes/admin.conf\"" >> /etc/bash.bashrc
+#echo "export KUBECONFIG=\"/etc/kubernetes/admin.conf\"" >> /etc/bash.bashrc
 
 ## setting up rc.local like autoexe.bat for some process to start at end of boot
 ##backup in case there
@@ -117,7 +117,7 @@ DEBIAN_FRONTEND=noninteractive
 apt -y  install vim chrony openssh-server screen net-tools git mc postfix sendemail tmux  \
 	sudo wget curl ethtool iptraf-ng traceroute telnet rsyslog software-properties-common \
 	dirmngr parted gdisk apt-transport-https lsb-release ca-certificates iputils-ping \
-	bridge-utils iptables jq conntrack gnupg nfs-common 
+	bridge-utils iptables jq conntrack gnupg nfs-common socat ipset 
  
 sed -i '/swap/s/^/#/' /etc/fstab
 swapoff -a
