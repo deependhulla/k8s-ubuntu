@@ -2,6 +2,9 @@
 
 cd /tmp
 
+##disable servicelb as we would use metallb 
+#curl -sfL https://get.k3s.io | sh -s - --disable servicelb
+
 curl -sfL https://get.k3s.io | sh -
 
 echo "Please Wait the pods are getting download, will take few min, around 1.5GB and Created..."
