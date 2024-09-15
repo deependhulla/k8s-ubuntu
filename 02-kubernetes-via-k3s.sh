@@ -10,5 +10,7 @@ kubectl get pods -A
 echo "Please Wait the pods are getting Created..."
 sleep 30 
 kubectl get pods -A
+kubectl get services
+
 echo "Recheck status using : kubectl get pods -A"
 cd -
